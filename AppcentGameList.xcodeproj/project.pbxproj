@@ -13,6 +13,7 @@
 		B10F228829B5DFC500969D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10F228729B5DFC500969D27 /* Assets.xcassets */; };
 		B10F228B29B5DFC500969D27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10F228929B5DFC500969D27 /* LaunchScreen.storyboard */; };
 		B10F229929B5E29300969D27 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B10F229829B5E29300969D27 /* SnapKit */; };
+		B10F229C29B5E63E00969D27 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B10F229B29B5E63E00969D27 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B10F229929B5E29300969D27 /* SnapKit in Frameworks */,
+				B10F229C29B5E63E00969D27 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +126,7 @@
 			name = AppcentGameList;
 			packageProductDependencies = (
 				B10F229829B5E29300969D27 /* SnapKit */,
+				B10F229B29B5E63E00969D27 /* Alamofire */,
 			);
 			productName = AppcentGameList;
 			productReference = B10F227B29B5DFC400969D27 /* AppcentGameList.app */;
@@ -155,6 +158,7 @@
 			mainGroup = B10F227229B5DFC400969D27;
 			packageReferences = (
 				B10F229729B5E29300969D27 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B10F229A29B5E63D00969D27 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B10F227C29B5DFC400969D27 /* Products */;
 			projectDirPath = "";
@@ -412,6 +416,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		B10F229A29B5E63D00969D27 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -419,6 +431,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B10F229729B5E29300969D27 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		B10F229B29B5E63E00969D27 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B10F229A29B5E63D00969D27 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
