@@ -10,6 +10,10 @@ import Foundation
 protocol MainViewModelOutputs: AnyObject {
     func prepareCollectionView()
     func setUpConstraints()
+    func setNavTitle(title: String)
+    func beginRefreshing()
+    func endRefreshing()
+    func dataRefreshed()
 }
 
 protocol MainViewModelInputs {
@@ -34,17 +38,19 @@ final class MainViewModel {
     }
     
     private func fetchGames() {
+        delegate?.beginRefreshing()
         gameAPI.getGameList(page: 1) { [weak self] results in
             guard let self else { return }
+            self.delegate?.endRefreshing()
             switch results {
             case .success(let games):
                 DispatchQueue.main.async {
                     self.games = games
+                    self.delegate?.dataRefreshed()
                 }
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
 }
@@ -55,6 +61,7 @@ extension MainViewModel: MainViewModelInputs {
     func viewDidLoad() {
         delegate?.prepareCollectionView()
         delegate?.setUpConstraints()
+        delegate?.setNavTitle(title: "Game List")
         fetchGames()
     }
     
@@ -66,7 +73,7 @@ extension MainViewModel: MainViewModelInputs {
         if section == 0 {
             return 1
         } else {
-            return 5
+            return self.games.count
         }
     }
 

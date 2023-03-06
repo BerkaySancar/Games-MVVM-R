@@ -28,6 +28,7 @@
 		B10F22CD29B623F400969D27 /* SnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F22CC29B623F400969D27 /* SnappingLayout.swift */; };
 		B10F22CF29B624BF00969D27 /* HorizontalGamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F22CE29B624BF00969D27 /* HorizontalGamesCell.swift */; };
 		B10F22D129B62BE900969D27 /* ScreenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F22D029B62BE900969D27 /* ScreenBounds.swift */; };
+		B10F22D429B63BC000969D27 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B10F22D329B63BC000969D27 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10F22D429B63BC000969D27 /* Kingfisher in Frameworks */,
 				B10F229929B5E29300969D27 /* SnapKit in Frameworks */,
 				B10F229C29B5E63E00969D27 /* Alamofire in Frameworks */,
 			);
@@ -265,6 +267,7 @@
 			packageProductDependencies = (
 				B10F229829B5E29300969D27 /* SnapKit */,
 				B10F229B29B5E63E00969D27 /* Alamofire */,
+				B10F22D329B63BC000969D27 /* Kingfisher */,
 			);
 			productName = AppcentGameList;
 			productReference = B10F227B29B5DFC400969D27 /* AppcentGameList.app */;
@@ -297,6 +300,7 @@
 			packageReferences = (
 				B10F229729B5E29300969D27 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				B10F229A29B5E63D00969D27 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B10F22D229B63BC000969D27 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B10F227C29B5DFC400969D27 /* Products */;
 			projectDirPath = "";
@@ -576,6 +580,14 @@
 				minimumVersion = 5.6.1;
 			};
 		};
+		B10F22D229B63BC000969D27 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -588,6 +600,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B10F229A29B5E63D00969D27 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		B10F22D329B63BC000969D27 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B10F22D229B63BC000969D27 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

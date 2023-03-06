@@ -42,7 +42,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameListCell.identifier, for: indexPath) as? GameListCell else { return UICollectionViewCell() }
-            
             return cell
         }
     }
@@ -54,6 +53,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 // MARK: - View Model Outputs
 extension MainViewController: MainViewModelOutputs {
+    
+    func setNavTitle(title: String) {
+        self.title = title
+    }
     
     func prepareCollectionView() {
         view.addSubview(collectionView)
@@ -67,5 +70,17 @@ extension MainViewController: MainViewModelOutputs {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func beginRefreshing() {
+        
+    }
+    
+    func endRefreshing() {
+        
+    }
+    
+    func dataRefreshed() {
+        self.collectionView.reloadData()
     }
 }
