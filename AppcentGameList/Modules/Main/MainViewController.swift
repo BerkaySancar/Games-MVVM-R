@@ -15,6 +15,13 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+         let aiv = UIActivityIndicatorView(style: .large)
+         aiv.hidesWhenStopped = true
+         aiv.color = .label
+         return aiv
+     }()
+    
     internal var viewModel: MainViewModelInputs!
 
 // MARK: - Life Cycle
@@ -80,6 +87,14 @@ extension MainViewController: MainViewModelOutputs {
         collectionView.register(GameListCell.self, forCellWithReuseIdentifier: GameListCell.identifier)
     }
     
+    func prepareActivtyIndicatorView() {
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    
     func setUpConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -87,11 +102,11 @@ extension MainViewController: MainViewModelOutputs {
     }
     
     func beginRefreshing() {
-        
+        activityIndicatorView.startAnimating()
     }
     
     func endRefreshing() {
-        
+        activityIndicatorView.stopAnimating()
     }
     
     func dataRefreshed() {

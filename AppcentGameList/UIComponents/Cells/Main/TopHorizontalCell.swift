@@ -36,6 +36,7 @@ final class TopHorizontalCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -45,6 +46,7 @@ final class TopHorizontalCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: UI Configure
     private func configure() {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
@@ -64,11 +66,13 @@ final class TopHorizontalCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Set Data
     internal func setData(games: [Game]) {
         self.games = games
     }
 }
 
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension TopHorizontalCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

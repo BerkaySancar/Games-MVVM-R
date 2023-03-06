@@ -11,6 +11,7 @@ protocol MainViewModelOutputs: AnyObject {
     func setNavTitle(title: String)
     func setViewBackgroundColor()
     func prepareCollectionView()
+    func prepareActivtyIndicatorView()
     func setUpConstraints()
     func beginRefreshing()
     func endRefreshing()
@@ -63,6 +64,7 @@ extension MainViewModel: MainViewModelInputs {
     
     func viewDidLoad() {
         delegate?.prepareCollectionView()
+        delegate?.prepareActivtyIndicatorView()
         delegate?.setUpConstraints()
         delegate?.setNavTitle(title: "Game List")
         delegate?.setViewBackgroundColor()
