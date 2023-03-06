@@ -22,6 +22,6 @@ final class MainRouter {
 
 extension MainRouter: MainRouterProtocol {
     func toDetail(id: Int) {
-        
+        self.view?.navigationController?.pushViewController(DetailBuilder.start(gameID: id), animated: true)
     }
 }
