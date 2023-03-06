@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainRouterProtocol {
-    func toDetail()
+    func toDetail(id: Int)
 }
 
 final class MainRouter {
@@ -21,7 +21,7 @@ final class MainRouter {
 }
 
 extension MainRouter: MainRouterProtocol {
-    func toDetail() {
+    func toDetail(id: Int) {
         
     }
 }

@@ -24,6 +24,7 @@ protocol MainViewModelInputs {
     func numberOfItemsIn(section: Int) -> Int
     func sizeForItemAt(indexPath: IndexPath) -> CGSize
     func cellForItemAt(item: Int) -> Game
+    func didSelectItemAt(index: Int)
     func topHorizontalGames() -> [Game]
 }
 
@@ -93,6 +94,11 @@ extension MainViewModel: MainViewModelInputs {
     
     func cellForItemAt(item: Int) -> Game {
         return self.games[item]
+    }
+    
+    func didSelectItemAt(index: Int) {
+        let selectedGameID = self.games[index].id
+        self.router.toDetail(id: selectedGameID)
     }
     
     func topHorizontalGames() -> [Game] {
