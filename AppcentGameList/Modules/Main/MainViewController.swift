@@ -39,15 +39,24 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHorizontalCell.identifier, for: indexPath) as? TopHorizontalCell else { return UICollectionViewCell() }
+            cell.setData(games: viewModel.topHorizontalGames())
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameListCell.identifier, for: indexPath) as? GameListCell else { return UICollectionViewCell() }
+            cell.setData(game: viewModel.cellForItemAt(item: indexPath.item))
+            cell.layer.borderWidth = 2
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 8
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return viewModel.sizeForItemAt(indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 16, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -58,10 +67,15 @@ extension MainViewController: MainViewModelOutputs {
         self.title = title
     }
     
+    func setViewBackgroundColor() {
+        view.backgroundColor = .white
+    }
+    
     func prepareCollectionView() {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .white
         collectionView.register(TopHorizontalCell.self, forCellWithReuseIdentifier: TopHorizontalCell.identifier)
         collectionView.register(GameListCell.self, forCellWithReuseIdentifier: GameListCell.identifier)
     }

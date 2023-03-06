@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class HorizontalGamesCell: UICollectionViewCell {
     
@@ -15,7 +16,7 @@ final class HorizontalGamesCell: UICollectionViewCell {
         let imageView = UIImageView()
         return imageView
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -27,14 +28,16 @@ final class HorizontalGamesCell: UICollectionViewCell {
     
     private func configure() {
         addSubview(gameImageView)
+        gameImageView.clipsToBounds = true
+        gameImageView.layer.cornerRadius = 8
         gameImageView.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(200)
             make.edges.equalToSuperview()
         }
     }
     
     internal func setData(imageURL: String) {
-        
+        if let url = URL(string: imageURL) {
+            gameImageView.kf.setImage(with: url)
+        }
     }
 }
