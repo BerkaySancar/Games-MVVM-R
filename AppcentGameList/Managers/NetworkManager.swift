@@ -19,7 +19,7 @@ final class NetworkManager {
                                    headers: HTTPHeaders? = nil,
                                    completion: @escaping (Result<T, Error>) -> Void) {
         
-        AF.request(url, method: method, parameters: parameters, headers: headers).responseDecodable(of: T.self) { response in
+        AF.request(url, method: method, parameters: parameters, headers: headers).validate().responseDecodable(of: T.self) { response in
             
             switch response.result {
             case .success(let data):
