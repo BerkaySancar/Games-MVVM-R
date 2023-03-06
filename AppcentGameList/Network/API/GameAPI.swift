@@ -8,13 +8,20 @@
 import Foundation
 
 protocol GameAPIProtocol {
-    func getGameList(url: String, page: Int, completion: @escaping (Result<[Game], Error>) -> Void)
-    func getGameDetail(url: String, id: Int, completion: @escaping (Result<GameDetailResponse, Error>) -> Void)
+    func getGameList(page: Int, completion: @escaping (Result<[Game], Error>) -> Void)
+    func getGameDetail(id: Int, completion: @escaping (Result<GameDetailResponse, Error>) -> Void)
 }
 
-final class GameAPI: GameAPIProtocol {
+final class GameAPI {
     
-    func getGameList(url: String, page: Int, completion: @escaping (Result<[Game], Error>) -> Void) {
+    static let shared = GameAPI()
+    
+    private init() {}
+}
+
+extension GameAPI: GameAPIProtocol {
+    
+    func getGameList(page: Int, completion: @escaping (Result<[Game], Error>) -> Void) {
         let url = GameEndpoints.list(page: page).url
         
         NetworkManager.shared.createRequest(type: GameListResponse.self,
@@ -30,7 +37,7 @@ final class GameAPI: GameAPIProtocol {
         }
     }
     
-    func getGameDetail(url: String, id: Int, completion: @escaping (Result<GameDetailResponse, Error>) -> Void) {
+    func getGameDetail(id: Int, completion: @escaping (Result<GameDetailResponse, Error>) -> Void) {
         let url = GameEndpoints.detail(id: id).url
         
         NetworkManager.shared.createRequest(type: GameDetailResponse.self,
