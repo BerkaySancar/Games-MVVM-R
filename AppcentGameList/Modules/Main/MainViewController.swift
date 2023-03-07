@@ -54,6 +54,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.layer.borderWidth = 2
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.cornerRadius = 8
+            
+            // Pagination
+            viewModel.loadMoreGames(indexPath: indexPath)
+            
             return cell
         }
     }

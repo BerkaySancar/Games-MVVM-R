@@ -25,6 +25,7 @@ protocol MainViewModelInputs {
     func cellForItemAt(item: Int) -> Game
     func didSelectItemAt(index: Int)
     func topHorizontalGames() -> [Game]
+    func loadMoreGames(indexPath: IndexPath)
 }
 
 // MARK: - View Model
@@ -34,6 +35,8 @@ final class MainViewModel {
     private let gameAPI: GameAPIProtocol
     
     private var games: [Game] = []
+    private var isPaginating = false
+    private var page = 1
     
     init(delegate: MainViewModelOutputs, router: MainRouterProtocol, gameAPI: GameAPIProtocol) {
         self.delegate = delegate
@@ -43,13 +46,13 @@ final class MainViewModel {
     
     private func fetchGames() {
         delegate?.beginRefreshing()
-        gameAPI.getGameList(page: 1) { [weak self] results in
+        gameAPI.getGameList(page: self.page) { [weak self] results in
             guard let self else { return }
             self.delegate?.endRefreshing()
             switch results {
             case .success(let games):
                 DispatchQueue.main.async {
-                    self.games = games
+                    self.games.append(contentsOf: games)
                     self.delegate?.dataRefreshed()
                 }
             case .failure(let error):
@@ -102,5 +105,14 @@ extension MainViewModel: MainViewModelInputs {
     func topHorizontalGames() -> [Game] {
         let firstFiveGames = Array(games.prefix(5))
         return firstFiveGames
+    }
+    
+    func loadMoreGames(indexPath: IndexPath) {
+        if indexPath.item == self.games.count - 1, !self.isPaginating {
+            self.isPaginating = true
+            self.page += 1
+            self.fetchGames()
+            self.isPaginating = false
+        }
     }
 }
