@@ -18,8 +18,8 @@ final class MainTabBarController: UITabBarController {
         setViewControllers([
             createNavController(viewController: MainBuilder.start(),
                                 title: "Games",
-                                imageName: "list.bullet.circle",
-                                selectedImageName: "list.bullet.circle.fill"),
+                                imageName: "gamecontroller",
+                                selectedImageName: "gamecontroller.fill"),
             createNavController(viewController: FavoritesBuilder.start(),
                                 title: "Favorites",
                                 imageName: "star",
