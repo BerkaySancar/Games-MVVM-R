@@ -15,7 +15,7 @@ extension UITabBarController {
         navController.tabBarItem.title = title
         navController.tabBarItem.image = UIImage(systemName: imageName)
         navController.tabBarItem.selectedImage = UIImage(systemName: selectedImageName)
-        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationBar.prefersLargeTitles = false
         viewController.navigationItem.title = title
         viewController.view.backgroundColor = .systemBackground
         return navController

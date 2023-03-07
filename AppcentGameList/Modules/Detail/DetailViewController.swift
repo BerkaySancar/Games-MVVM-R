@@ -36,6 +36,18 @@ final class DetailViewController: UIViewController {
         return label
     }()
     
+    private lazy var favButton: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        button.setImage(UIImage(systemName: "star", withConfiguration: config), for: .normal)
+        button.setImage(UIImage(systemName: "star.fill", withConfiguration: config), for: .selected)
+        button.clipsToBounds = true
+        button.tintColor = .systemYellow
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
          let aiv = UIActivityIndicatorView(style: .large)
          aiv.hidesWhenStopped = true
@@ -52,8 +64,15 @@ final class DetailViewController: UIViewController {
         viewModel.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favButton.isSelected = viewModel.checkFav()
+    }
+    
+// MARK: - Actions
     @objc
-    private func favButtonTapped() {
+    private func favButtonTapped(_ sender: UIButton) {
+        sender.isSelected.toggle()
         viewModel.addFavorite()
     }
 }
@@ -124,8 +143,13 @@ extension DetailViewController: DetailViewModelOutputs {
     }
     
     func prepareFavoritesButton() {
-        let imageName = viewModel.checkFav() ? "star.fill" : "star"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: imageName), style: .plain, target: self, action: #selector(favButtonTapped))
+        contentView.addSubview(favButton)
+        favButton.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
+        
+        favButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(16)
+            make.top.equalTo(contentView.snp.top).offset(20)
+        }
     }
     
     func showGame(game: GameDetailResponse) {
@@ -134,6 +158,8 @@ extension DetailViewController: DetailViewModelOutputs {
         if let url = URL(string: game.backgroundImage ?? "") {
             self.gameImageView.kf.setImage(with: url)
         }
+        
+        favButton.isSelected = viewModel.checkFav()
     }
     
     func beginRefreshing() {

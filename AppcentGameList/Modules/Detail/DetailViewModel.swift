@@ -28,6 +28,7 @@ protocol DetailViewModelInputs {
     func checkFav() -> Bool
 }
 
+// MARK: - ViewModel
 final class DetailViewModel {
     
     private var game: GameDetailResponse?
@@ -50,8 +51,8 @@ final class DetailViewModel {
             self.delegate?.endRefreshing()
             switch results {
             case .success(let game):
-                self.delegate?.showGame(game: game)
                 self.game = game
+                self.delegate?.showGame(game: game)
             case .failure(let error):
                 print(error)
             }
@@ -59,6 +60,7 @@ final class DetailViewModel {
     }
 }
 
+// MARK: - View Model Inputs
 extension DetailViewModel: DetailViewModelInputs {
   
     func viewDidLoad() {
@@ -73,18 +75,22 @@ extension DetailViewModel: DetailViewModelInputs {
         delegate?.prepareFavoritesButton()
         fetchGameDetail()
     }
-    
+   
     func addFavorite() {
         if let game, !checkFav() {
             coreDataManager.addFavorite(name: game.name, imageURL: game.backgroundImage ?? "")
+        } else {
+            if let index = coreDataManager.getFavorites()?.firstIndex(where: { $0.name == self.game?.name }) {
+                coreDataManager.deleteFavorite(index: index)
+            }
         }
     }
     
     func checkFav() -> Bool {
-        if coreDataManager.getFavorites()?.contains(where: { $0.name == game?.name }) == false {
-            return false
-        } else {
+        if coreDataManager.getFavorites()?.contains(where: { $0.name == self.game?.name}) == true {
             return true
+        } else {
+             return false
         }
     }
 }
