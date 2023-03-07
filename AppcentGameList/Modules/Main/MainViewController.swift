@@ -75,10 +75,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 // MARK: - View Model Outputs
 extension MainViewController: MainViewModelOutputs {
     
-    func setNavTitle(title: String) {
-        self.title = title
-    }
-    
     func setViewBackgroundColor() {
         view.backgroundColor = .white
     }

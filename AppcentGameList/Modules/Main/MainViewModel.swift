@@ -8,7 +8,6 @@
 import Foundation
 
 protocol MainViewModelOutputs: AnyObject {
-    func setNavTitle(title: String)
     func setViewBackgroundColor()
     func prepareCollectionView()
     func prepareActivtyIndicatorView()
@@ -67,7 +66,6 @@ extension MainViewModel: MainViewModelInputs {
         delegate?.prepareCollectionView()
         delegate?.prepareActivtyIndicatorView()
         delegate?.setUpConstraints()
-        delegate?.setNavTitle(title: "Game List")
         delegate?.setViewBackgroundColor()
         fetchGames()
     }
