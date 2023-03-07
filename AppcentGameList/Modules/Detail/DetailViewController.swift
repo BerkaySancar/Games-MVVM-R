@@ -51,6 +51,11 @@ final class DetailViewController: UIViewController {
 
         viewModel.viewDidLoad()
     }
+    
+    @objc
+    private func favButtonTapped() {
+        viewModel.addFavorite()
+    }
 }
 
 // MARK: - View Model Outputs
@@ -118,13 +123,17 @@ extension DetailViewController: DetailViewModelOutputs {
         }
     }
     
+    func prepareFavoritesButton() {
+        let imageName = viewModel.checkFav() ? "star.fill" : "star"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: imageName), style: .plain, target: self, action: #selector(favButtonTapped))
+    }
+    
     func showGame(game: GameDetailResponse) {
         self.gameNameLabel.text = game.name
         self.gameDescriptionLabel.text = game.description ?? ""
         if let url = URL(string: game.backgroundImage ?? "") {
             self.gameImageView.kf.setImage(with: url)
         }
-        
     }
     
     func beginRefreshing() {

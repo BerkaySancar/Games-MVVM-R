@@ -11,7 +11,7 @@ final class DetailBuilder {
     
     static func start(gameID: Int) -> DetailViewController {
         let view = DetailViewController()
-        let viewModel = DetailViewModel(delegate: view, gameAPI: GameAPI.shared, gameID: gameID)
+        let viewModel = DetailViewModel(delegate: view, gameAPI: GameAPI.shared, gameID: gameID, coreDataManager: CoreDataManager.shared)
         view.viewModel = viewModel
         return view
     }
