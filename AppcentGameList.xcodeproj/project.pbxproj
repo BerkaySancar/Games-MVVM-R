@@ -32,6 +32,7 @@
 		B11F1C8929B669220017A063 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F1C8829B669220017A063 /* DetailViewController.swift */; };
 		B11F1C8B29B6693A0017A063 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F1C8A29B6693A0017A063 /* DetailViewModel.swift */; };
 		B11F1C8D29B669420017A063 /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F1C8C29B669420017A063 /* DetailBuilder.swift */; };
+		B157367B29B888EE00426697 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157367A29B888EE00426697 /* UIViewController+Extension.swift */; };
 		B1A4895329B735E6000610CE /* UITabBarController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4895229B735E6000610CE /* UITabBarController+Extension.swift */; };
 		B1A4895629B73628000610CE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4895529B73628000610CE /* MainTabBarController.swift */; };
 		B1A4895929B73746000610CE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4895829B73746000610CE /* FavoritesViewController.swift */; };
@@ -68,6 +69,7 @@
 		B11F1C8829B669220017A063 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B11F1C8A29B6693A0017A063 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		B11F1C8C29B669420017A063 /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
+		B157367A29B888EE00426697 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B1A4895229B735E6000610CE /* UITabBarController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Extension.swift"; sourceTree = "<group>"; };
 		B1A4895529B73628000610CE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B1A4895829B73746000610CE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				B1A4895229B735E6000610CE /* UITabBarController+Extension.swift */,
+				B157367A29B888EE00426697 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				B1A4896729B7447C000610CE /* FavoritesBuilder.swift in Sources */,
 				B1A4896229B73E35000610CE /* Favorite+CoreDataClass.swift in Sources */,
 				B10F22C929B622E800969D27 /* GameListCell.swift in Sources */,
+				B157367B29B888EE00426697 /* UIViewController+Extension.swift in Sources */,
 				B10F22CD29B623F400969D27 /* SnappingLayout.swift in Sources */,
 				B10F22CF29B624BF00969D27 /* HorizontalGamesCell.swift in Sources */,
 				B10F22D129B62BE900969D27 /* ScreenBounds.swift in Sources */,

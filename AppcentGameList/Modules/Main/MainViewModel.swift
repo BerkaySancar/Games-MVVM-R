@@ -15,6 +15,7 @@ protocol MainViewModelOutputs: AnyObject {
     func beginRefreshing()
     func endRefreshing()
     func dataRefreshed()
+    func onError(message: String)
 }
 
 protocol MainViewModelInputs {
@@ -61,7 +62,7 @@ final class MainViewModel {
                     self.delegate?.dataRefreshed()
                 }
             case .failure(let error):
-                print(error)
+                self.delegate?.onError(message: error.localizedDescription)
             }
         }
     }

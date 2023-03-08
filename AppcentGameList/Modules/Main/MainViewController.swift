@@ -150,8 +150,13 @@ extension MainViewController: MainViewModelOutputs {
     func dataRefreshed() {
         self.collectionView.reloadData()
     }
+    
+    func onError(message: String) {
+        self.showErrorAlert(message: message)
+    }
 }
 
+// MARK: - SearchBar Delegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchTextDidChange(text: searchText)
