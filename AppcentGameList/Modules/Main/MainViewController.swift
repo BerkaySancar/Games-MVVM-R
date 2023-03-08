@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    
+        
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -22,6 +22,17 @@ final class MainViewController: UIViewController {
          return aiv
      }()
     
+    private lazy var searchController: UISearchController = {
+        let searchVC = UISearchController(searchResultsController: nil)
+           return searchVC
+       }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refControl = UIRefreshControl()
+        refControl.addTarget(self, action: #selector(refreshCollectionView), for: UIControl.Event.valueChanged)
+        return refControl
+    }()
+    
     internal var viewModel: MainViewModelInputs!
 
 // MARK: - Life Cycle
@@ -29,6 +40,16 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
        
         viewModel.viewDidLoad()
+    }
+    
+// MARK: - Actions
+    
+    @objc
+    private func refreshCollectionView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.viewModel.refreshCollectionView()
+            self.refreshControl.endRefreshing()
+        }
     }
 }
 
@@ -45,9 +66,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHorizontalCell.identifier, for: indexPath) as? TopHorizontalCell else { return UICollectionViewCell() }
-            cell.setData(games: viewModel.topHorizontalGames())
-            return cell
+            if !viewModel.showSearchStatus() {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHorizontalCell.identifier, for: indexPath) as? TopHorizontalCell else { return UICollectionViewCell() }
+                cell.setData(games: viewModel.topHorizontalGames())
+                return cell
+            } else {
+                return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            }
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameListCell.identifier, for: indexPath) as? GameListCell else { return UICollectionViewCell() }
             cell.setData(game: viewModel.cellForItemAt(item: indexPath.item))
@@ -90,6 +115,13 @@ extension MainViewController: MainViewModelOutputs {
         collectionView.backgroundColor = .white
         collectionView.register(TopHorizontalCell.self, forCellWithReuseIdentifier: TopHorizontalCell.identifier)
         collectionView.register(GameListCell.self, forCellWithReuseIdentifier: GameListCell.identifier)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.keyboardDismissMode = .onDrag
+        collectionView.refreshControl = self.refreshControl
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func prepareActivtyIndicatorView() {
@@ -100,10 +132,11 @@ extension MainViewController: MainViewModelOutputs {
         }
     }
     
-    func setUpConstraints() {
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+    func prepareSearchController() {
+        self.navigationItem.searchController = self.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = true
+        self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.placeholder = "Search"
     }
     
     func beginRefreshing() {
@@ -116,5 +149,19 @@ extension MainViewController: MainViewModelOutputs {
     
     func dataRefreshed() {
         self.collectionView.reloadData()
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchTextDidChange(text: searchText)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        viewModel.toggleSearchStatus()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        viewModel.toggleSearchStatus()
     }
 }

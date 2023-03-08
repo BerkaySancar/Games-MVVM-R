@@ -11,7 +11,7 @@ protocol MainViewModelOutputs: AnyObject {
     func setViewBackgroundColor()
     func prepareCollectionView()
     func prepareActivtyIndicatorView()
-    func setUpConstraints()
+    func prepareSearchController()
     func beginRefreshing()
     func endRefreshing()
     func dataRefreshed()
@@ -26,6 +26,10 @@ protocol MainViewModelInputs {
     func didSelectItemAt(index: Int)
     func topHorizontalGames() -> [Game]
     func loadMoreGames(indexPath: IndexPath)
+    func searchTextDidChange(text: String?)
+    func toggleSearchStatus()
+    func showSearchStatus() -> Bool
+    func refreshCollectionView()
 }
 
 // MARK: - View Model
@@ -37,6 +41,7 @@ final class MainViewModel {
     private var games: [Game] = []
     private var isPaginating = false
     private var page = 1
+    private var isSearching = false
     
     init(delegate: MainViewModelOutputs, router: MainRouterProtocol, gameAPI: GameAPIProtocol) {
         self.delegate = delegate
@@ -68,8 +73,8 @@ extension MainViewModel: MainViewModelInputs {
     func viewDidLoad() {
         delegate?.prepareCollectionView()
         delegate?.prepareActivtyIndicatorView()
-        delegate?.setUpConstraints()
         delegate?.setViewBackgroundColor()
+        delegate?.prepareSearchController()
         fetchGames()
     }
     
@@ -87,7 +92,11 @@ extension MainViewModel: MainViewModelInputs {
 
     func sizeForItemAt(indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return .init(width: ScreenBounds.width - 32, height: 260)
+            if isSearching {
+                return .init(width: ScreenBounds.width, height: 1)
+            } else {
+                return .init(width: ScreenBounds.width - 32, height: 260)
+            }
         } else {
             return .init(width: ScreenBounds.width - 32, height: 144)
         }
@@ -114,5 +123,31 @@ extension MainViewModel: MainViewModelInputs {
             self.fetchGames()
             self.isPaginating = false
         }
+    }
+    
+    func searchTextDidChange(text: String?) {
+        if let text, text.count > 2 {
+            let filtered = games.filter { $0.name.lowercased().contains(text.lowercased()) }
+            self.games = filtered
+            self.delegate?.dataRefreshed()
+        } else {
+            self.games = []
+            self.page = 1
+            fetchGames()
+        }
+    }
+    
+    func toggleSearchStatus() {
+        isSearching.toggle()
+        delegate?.dataRefreshed()
+    }
+    
+    func showSearchStatus() -> Bool {
+        return isSearching
+    }
+    
+    func refreshCollectionView() {
+        self.page = 1
+        self.fetchGames()
     }
 }
