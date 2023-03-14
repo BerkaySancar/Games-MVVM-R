@@ -132,7 +132,7 @@ extension MainViewModel: MainViewModelInputs {
             self.games = filtered
             self.delegate?.dataRefreshed()
         } else {
-            self.games = []
+            self.games.removeAll()
             self.page = 1
             fetchGames()
         }
@@ -148,6 +148,7 @@ extension MainViewModel: MainViewModelInputs {
     }
     
     func refreshCollectionView() {
+        self.games.removeAll()
         self.page = 1
         self.fetchGames()
     }
