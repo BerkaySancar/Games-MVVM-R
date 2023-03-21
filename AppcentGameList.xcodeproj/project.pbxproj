@@ -42,7 +42,21 @@
 		B1A4896529B7446D000610CE /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4896429B7446D000610CE /* FavoritesViewModel.swift */; };
 		B1A4896729B7447C000610CE /* FavoritesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4896629B7447C000610CE /* FavoritesBuilder.swift */; };
 		B1A4896A29B749C4000610CE /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A4896929B749C4000610CE /* FavoriteCell.swift */; };
+		B1E2CDD329C35504003F4E10 /* MockMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2CDD229C35504003F4E10 /* MockMainView.swift */; };
+		B1E2CDD529C35510003F4E10 /* MockGameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2CDD429C35510003F4E10 /* MockGameAPI.swift */; };
+		B1E2CDD729C355EC003F4E10 /* MockMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2CDD629C355EC003F4E10 /* MockMainRouter.swift */; };
+		B1FF81C629C3588600BD20F1 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF81C529C3588600BD20F1 /* MainViewModelTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B1E2CDCC29C3549A003F4E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B10F227329B5DFC400969D27 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B10F227A29B5DFC400969D27;
+			remoteInfo = AppcentGameList;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B10F227B29B5DFC400969D27 /* AppcentGameList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppcentGameList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +93,11 @@
 		B1A4896429B7446D000610CE /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		B1A4896629B7447C000610CE /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
 		B1A4896929B749C4000610CE /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		B1E2CDC829C3549A003F4E10 /* AppcentGameListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppcentGameListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E2CDD229C35504003F4E10 /* MockMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainView.swift; sourceTree = "<group>"; };
+		B1E2CDD429C35510003F4E10 /* MockGameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameAPI.swift; sourceTree = "<group>"; };
+		B1E2CDD629C355EC003F4E10 /* MockMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainRouter.swift; sourceTree = "<group>"; };
+		B1FF81C529C3588600BD20F1 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +111,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1E2CDC529C3549A003F4E10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -99,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B10F227D29B5DFC400969D27 /* AppcentGameList */,
+				B1E2CDC929C3549A003F4E10 /* AppcentGameListTests */,
 				B10F227C29B5DFC400969D27 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				B10F227B29B5DFC400969D27 /* AppcentGameList.app */,
+				B1E2CDC829C3549A003F4E10 /* AppcentGameListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,6 +363,25 @@
 			path = Favorite;
 			sourceTree = "<group>";
 		};
+		B1E2CDC929C3549A003F4E10 /* AppcentGameListTests */ = {
+			isa = PBXGroup;
+			children = (
+				B1E2CDD129C354DA003F4E10 /* Main */,
+			);
+			path = AppcentGameListTests;
+			sourceTree = "<group>";
+		};
+		B1E2CDD129C354DA003F4E10 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B1E2CDD229C35504003F4E10 /* MockMainView.swift */,
+				B1E2CDD429C35510003F4E10 /* MockGameAPI.swift */,
+				B1E2CDD629C355EC003F4E10 /* MockMainRouter.swift */,
+				B1FF81C529C3588600BD20F1 /* MainViewModelTests.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,6 +407,24 @@
 			productReference = B10F227B29B5DFC400969D27 /* AppcentGameList.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1E2CDC729C3549A003F4E10 /* AppcentGameListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1E2CDD029C3549A003F4E10 /* Build configuration list for PBXNativeTarget "AppcentGameListTests" */;
+			buildPhases = (
+				B1E2CDC429C3549A003F4E10 /* Sources */,
+				B1E2CDC529C3549A003F4E10 /* Frameworks */,
+				B1E2CDC629C3549A003F4E10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1E2CDCD29C3549A003F4E10 /* PBXTargetDependency */,
+			);
+			name = AppcentGameListTests;
+			productName = AppcentGameListTests;
+			productReference = B1E2CDC829C3549A003F4E10 /* AppcentGameListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -372,6 +437,10 @@
 				TargetAttributes = {
 					B10F227A29B5DFC400969D27 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					B1E2CDC729C3549A003F4E10 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = B10F227A29B5DFC400969D27;
 					};
 				};
 			};
@@ -394,6 +463,7 @@
 			projectRoot = "";
 			targets = (
 				B10F227A29B5DFC400969D27 /* AppcentGameList */,
+				B1E2CDC729C3549A003F4E10 /* AppcentGameListTests */,
 			);
 		};
 /* End PBXProject section */
@@ -405,6 +475,13 @@
 			files = (
 				B10F228B29B5DFC500969D27 /* LaunchScreen.storyboard in Resources */,
 				B10F228829B5DFC500969D27 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1E2CDC629C3549A003F4E10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +525,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1E2CDC429C3549A003F4E10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1E2CDD329C35504003F4E10 /* MockMainView.swift in Sources */,
+				B1E2CDD529C35510003F4E10 /* MockGameAPI.swift in Sources */,
+				B1E2CDD729C355EC003F4E10 /* MockMainRouter.swift in Sources */,
+				B1FF81C629C3588600BD20F1 /* MainViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1E2CDCD29C3549A003F4E10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B10F227A29B5DFC400969D27 /* AppcentGameList */;
+			targetProxy = B1E2CDCC29C3549A003F4E10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B10F228929B5DFC500969D27 /* LaunchScreen.storyboard */ = {
@@ -640,6 +736,48 @@
 			};
 			name = Release;
 		};
+		B1E2CDCE29C3549A003F4E10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ4V82589Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.berkaysancar.AppcentGameListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppcentGameList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppcentGameList";
+			};
+			name = Debug;
+		};
+		B1E2CDCF29C3549A003F4E10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ4V82589Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.berkaysancar.AppcentGameListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppcentGameList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppcentGameList";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -657,6 +795,15 @@
 			buildConfigurations = (
 				B10F229029B5DFC500969D27 /* Debug */,
 				B10F229129B5DFC500969D27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1E2CDD029C3549A003F4E10 /* Build configuration list for PBXNativeTarget "AppcentGameListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1E2CDCE29C3549A003F4E10 /* Debug */,
+				B1E2CDCF29C3549A003F4E10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
