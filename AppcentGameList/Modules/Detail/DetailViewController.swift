@@ -36,43 +36,37 @@ final class DetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var favButton: UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 32)
-        button.setImage(UIImage(systemName: "star", withConfiguration: config), for: .normal)
-        button.setImage(UIImage(systemName: "star.fill", withConfiguration: config), for: .selected)
-        button.clipsToBounds = true
-        button.tintColor = .systemYellow
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        return button
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .large)
+        aiv.hidesWhenStopped = true
+        aiv.color = .label
+        return aiv
     }()
     
-    private lazy var activityIndicatorView: UIActivityIndicatorView = {
-         let aiv = UIActivityIndicatorView(style: .large)
-         aiv.hidesWhenStopped = true
-         aiv.color = .label
-         return aiv
-     }()
-    
     internal var viewModel: DetailViewModelInputs!
-
- // MARK: - Life Cycle
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         viewModel.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        favButton.isSelected = viewModel.checkFav()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.viewDidAppear()
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     @objc
-    private func favButtonTapped(_ sender: UIButton) {
-        sender.isSelected.toggle()
+    private func starButtonTapped(_ sender: UIBarButtonItem) {
+        if sender.image == .init(systemName: "star.fill") {
+            sender.image = .init(systemName: "star")
+        } else {
+            sender.image = .init(systemName: "star.fill")
+        }
+        
         viewModel.addFavorite()
     }
 }
@@ -87,6 +81,15 @@ extension DetailViewController: DetailViewModelOutputs {
         view.backgroundColor = .white
     }
     
+    func prepareFavButton() {
+        let favButton = UIBarButtonItem(image: self.viewModel.checkFav() ? .init(systemName: "star.fill") : .init(systemName: "star"),
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(self.starButtonTapped))
+        
+        self.navigationItem.rightBarButtonItem = favButton
+    }
+    
     func prepareScrollView() {
         view.addSubview(scrollView)
         
@@ -95,7 +98,7 @@ extension DetailViewController: DetailViewModelOutputs {
             make.left.right.bottom.equalTo(view)
         }
     }
-    
+        
     func prepareContentView() {
         scrollView.addSubview(contentView)
         
@@ -142,24 +145,12 @@ extension DetailViewController: DetailViewModelOutputs {
         }
     }
     
-    func prepareFavoritesButton() {
-        contentView.addSubview(favButton)
-        favButton.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
-        
-        favButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(16)
-            make.top.equalTo(contentView.snp.top).offset(20)
-        }
-    }
-    
     func showGame(game: GameDetailResponse) {
         self.gameNameLabel.text = game.name
         self.gameDescriptionLabel.text = game.description ?? ""
         if let url = URL(string: game.backgroundImage ?? "") {
             self.gameImageView.kf.setImage(with: url)
         }
-        
-        favButton.isSelected = viewModel.checkFav()
     }
     
     func beginRefreshing() {

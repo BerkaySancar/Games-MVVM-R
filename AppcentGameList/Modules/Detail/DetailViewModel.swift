@@ -10,13 +10,13 @@ import Foundation
 protocol DetailViewModelOutputs: AnyObject {
     func setNavTitle(title: String)
     func setViewBackgroundColor()
+    func prepareFavButton()
     func prepareScrollView()
     func prepareContentView()
     func prepareGameImageView()
     func prepareGameNameLabel()
     func prepareGameDescriptionLabel()
     func prepareActivityIndicatorView()
-    func prepareFavoritesButton()
     func showGame(game: GameDetailResponse)
     func beginRefreshing()
     func endRefreshing()
@@ -24,6 +24,7 @@ protocol DetailViewModelOutputs: AnyObject {
 
 protocol DetailViewModelInputs {
     func viewDidLoad()
+    func viewDidAppear()
     func addFavorite()
     func checkFav() -> Bool
 }
@@ -72,8 +73,11 @@ extension DetailViewModel: DetailViewModelInputs {
         delegate?.prepareGameNameLabel()
         delegate?.prepareGameDescriptionLabel()
         delegate?.prepareActivityIndicatorView()
-        delegate?.prepareFavoritesButton()
         fetchGameDetail()
+    }
+    
+    func viewDidAppear() {
+        delegate?.prepareFavButton()
     }
    
     func addFavorite() {
