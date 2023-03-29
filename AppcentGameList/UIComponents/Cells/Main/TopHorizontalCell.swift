@@ -23,7 +23,7 @@ final class TopHorizontalCell: UICollectionViewCell {
         let pageControl = UIPageControl()
         pageControl.tintColor = .white
         pageControl.currentPageIndicatorTintColor = .systemBlue
-        pageControl.pageIndicatorTintColor = .black
+        pageControl.pageIndicatorTintColor = .white
         pageControl.backgroundColor = .systemGray6
         pageControl.layer.cornerRadius = 8
         return pageControl
