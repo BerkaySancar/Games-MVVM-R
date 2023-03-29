@@ -216,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				B10F22A129B5F24200969D27 /* API */,
-				B10F22A529B5F7EF00969D27 /* Models */,
+				B10F22A629B5F7F200969D27 /* ResponseModels */,
 				B10F22A829B5FBC800969D27 /* Endpoints */,
 			);
 			path = Network;
@@ -228,14 +228,6 @@
 				B10F22B729B609F900969D27 /* GameAPI.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		B10F22A529B5F7EF00969D27 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B10F22A629B5F7F200969D27 /* ResponseModels */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B10F22A629B5F7F200969D27 /* ResponseModels */ = {
