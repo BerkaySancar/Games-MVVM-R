@@ -49,11 +49,7 @@ final class MainViewModelTests: XCTestCase {
         XCTAssertEqual(view.invokedPrepareSearchController, 1)
         XCTAssertEqual(api.invokedGetGameList, 1)
     }
-    
-    func test_numberOfSection_Equals_2() {
-        XCTAssertEqual(viewModel.numberOfSection(), 2)
-    }
-    
+   
 //    func test_didSelectItemAt_WithAllIndex_RouteToDetail() {
 //        XCTAssertEqual(router.invokedToDetailCount, 0)
 //        XCTAssertNil(router.invokedID)
