@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import AppcentGameList
+@testable import Games
 
 final class MockMainView: MainViewModelOutputs {
     

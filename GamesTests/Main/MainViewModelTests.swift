@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import AppcentGameList
+@testable import Games
 
 final class MainViewModelTests: XCTestCase {
     
