@@ -39,7 +39,7 @@ final class DetailViewController: UIViewController {
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .large)
         aiv.hidesWhenStopped = true
-        aiv.color = .label
+        aiv.color = .systemBlue
         return aiv
     }()
     
@@ -78,7 +78,7 @@ extension DetailViewController: DetailViewModelOutputs {
     }
     
     func setViewBackgroundColor() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     func prepareFavButton() {

@@ -18,7 +18,7 @@ final class MainViewController: UIViewController {
     private lazy var activityIndicatorView: UIActivityIndicatorView = {
          let aiv = UIActivityIndicatorView(style: .large)
          aiv.hidesWhenStopped = true
-         aiv.color = .label
+         aiv.color = .systemBlue
          return aiv
      }()
     
@@ -30,6 +30,7 @@ final class MainViewController: UIViewController {
     private lazy var refreshControl: UIRefreshControl = {
         let refControl = UIRefreshControl()
         refControl.addTarget(self, action: #selector(refreshCollectionView), for: UIControl.Event.valueChanged)
+        refControl.tintColor = .systemBlue
         return refControl
     }()
     
@@ -77,8 +78,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameListCell.identifier, for: indexPath) as? GameListCell else { return UICollectionViewCell() }
             cell.setData(game: viewModel.cellForItemAt(item: indexPath.item))
             cell.layer.borderWidth = 2
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
             cell.layer.cornerRadius = 8
+            cell.clipsToBounds = true
             
             // Pagination
             viewModel.loadMoreGames(indexPath: indexPath)
@@ -105,14 +107,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension MainViewController: MainViewModelOutputs {
     
     func setViewBackgroundColor() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     func prepareCollectionView() {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .white
         collectionView.register(TopHorizontalCell.self, forCellWithReuseIdentifier: TopHorizontalCell.identifier)
         collectionView.register(GameListCell.self, forCellWithReuseIdentifier: GameListCell.identifier)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -120,7 +121,8 @@ extension MainViewController: MainViewModelOutputs {
         collectionView.refreshControl = self.refreshControl
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.right.bottom.left.equalToSuperview()
         }
     }
     

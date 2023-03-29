@@ -22,7 +22,7 @@ final class TopHorizontalCell: UICollectionViewCell {
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.tintColor = .white
-        pageControl.currentPageIndicatorTintColor = .red
+        pageControl.currentPageIndicatorTintColor = .systemBlue
         pageControl.pageIndicatorTintColor = .black
         pageControl.backgroundColor = .systemGray6
         pageControl.layer.cornerRadius = 8
@@ -53,7 +53,7 @@ final class TopHorizontalCell: UICollectionViewCell {
         collectionView.dataSource = self
         collectionView.register(HorizontalGamesCell.self, forCellWithReuseIdentifier: HorizontalGamesCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
@@ -82,6 +82,7 @@ extension TopHorizontalCell: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalGamesCell.identifier, for: indexPath) as? HorizontalGamesCell else { return UICollectionViewCell() }
         cell.setData(imageURL: games[indexPath.row].backgroundImage ?? "")
+        cell.backgroundColor = .systemBackground
         return cell
     }
     
