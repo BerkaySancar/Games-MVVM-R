@@ -11,6 +11,7 @@
 - Programmatically UI
 - CoreData
 - Pagination
+- Page control
 - Search bar
 - Network request
 
