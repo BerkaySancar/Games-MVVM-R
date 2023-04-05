@@ -23,13 +23,9 @@
 
 These libraries were installed using Swift Package Manager.
 
-## Installation
+## SwiftUI Project
 
-To install and run Games on your device, you'll need to:
-- Clone the repository
-- Install the dependencies using Swift Package Manager
-- Open the Games.xcodeproj file in Xcode
-- Build and run the app on a simulator or device
+- https://github.com/BerkaySancar/Games-SwiftUI-MVVM
 
 ### TODO
 - Add more unit tests
